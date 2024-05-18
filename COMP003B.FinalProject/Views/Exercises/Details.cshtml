@@ -42,6 +42,15 @@
         </dd>
     </dl>
 </div>
+<div class="col-md-4">
+    <h4>Exercises</h4>
+    <ul>
+        @foreach (Exercise exercise in ViewBag.Exercises)
+        {
+            <li>@exercise.Name</li>
+        }
+    </ul>
+</div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.ExerciseId">Edit</a> |
     <a asp-action="Index">Back to List</a>

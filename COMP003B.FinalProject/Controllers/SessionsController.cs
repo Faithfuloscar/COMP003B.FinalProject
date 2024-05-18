@@ -22,7 +22,7 @@ namespace COMP003B.FinalProject.Controllers
         // GET: Sessions
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Session.ToListAsync());
+            return View(await _context.Sessions.ToListAsync());
         }
 
         // GET: Sessions/Details/5
@@ -33,7 +33,7 @@ namespace COMP003B.FinalProject.Controllers
                 return NotFound();
             }
 
-            var session = await _context.Session
+            var session = await _context.Sessions
                 .FirstOrDefaultAsync(m => m.SessionId == id);
             if (session == null)
             {
@@ -73,11 +73,17 @@ namespace COMP003B.FinalProject.Controllers
                 return NotFound();
             }
 
-            var session = await _context.Session.FindAsync(id);
+            var session = await _context.Sessions.FindAsync(id);
             if (session == null)
             {
                 return NotFound();
             }
+
+            ViewBag.Sessions = from u in _context.Users
+                               join r in _context.Records on u.UserId equals r.UserId
+                               join s in _context.Sessions on r.SessionId equals s.SessionId
+                               where u.UserId == id
+                               select s;
             return View(session);
         }
 
@@ -124,7 +130,7 @@ namespace COMP003B.FinalProject.Controllers
                 return NotFound();
             }
 
-            var session = await _context.Session
+            var session = await _context.Sessions
                 .FirstOrDefaultAsync(m => m.SessionId == id);
             if (session == null)
             {
@@ -139,10 +145,10 @@ namespace COMP003B.FinalProject.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var session = await _context.Session.FindAsync(id);
+            var session = await _context.Sessions.FindAsync(id);
             if (session != null)
             {
-                _context.Session.Remove(session);
+                _context.Sessions.Remove(session);
             }
 
             await _context.SaveChangesAsync();
@@ -151,7 +157,7 @@ namespace COMP003B.FinalProject.Controllers
 
         private bool SessionExists(int id)
         {
-            return _context.Session.Any(e => e.SessionId == id);
+            return _context.Sessions.Any(e => e.SessionId == id);
         }
     }
 }

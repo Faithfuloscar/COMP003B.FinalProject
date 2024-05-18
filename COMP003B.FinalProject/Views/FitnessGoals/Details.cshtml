@@ -30,6 +30,15 @@
         </dd>
     </dl>
 </div>
+<div class="col-md-4">
+    <h4>Fitness Goals</h4>
+    <ul>
+        @foreach (FitnessGoal fitnessGoal in ViewBag.FitnessGoals)
+        {
+            <li>@fitnessGoal.GoalType</li>
+        }
+    </ul>
+</div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.FitnessGoalId">Edit</a> |
     <a asp-action="Index">Back to List</a>

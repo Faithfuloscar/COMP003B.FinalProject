@@ -22,7 +22,7 @@ namespace COMP003B.FinalProject.Controllers
         // GET: Records
         public async Task<IActionResult> Index()
         {
-            var fitContext = _context.Record.Include(@ => @.Exercise).Include(@ => @.FitnessGoal).Include(@ => @.Location).Include(@ => @.Session).Include(@ => @.Users);
+            var fitContext = _context.Records.Include(r => r.Exercise).Include(r => r.FitnessGoal).Include(r => r.Location).Include(r => r.Session).Include(r => r.User);
             return View(await fitContext.ToListAsync());
         }
 
@@ -34,12 +34,12 @@ namespace COMP003B.FinalProject.Controllers
                 return NotFound();
             }
 
-            var @record = await _context.Record
-                .Include(@ => @.Exercise)
-                .Include(@ => @.FitnessGoal)
-                .Include(@ => @.Location)
-                .Include(@ => @.Session)
-                .Include(@ => @.Users)
+            var @record = await _context.Records
+                .Include(r => r.Exercise)
+                .Include(r => r.FitnessGoal)
+                .Include(r => r.Location)
+                .Include(r => r.Session)
+                .Include(r => r.User)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (@record == null)
             {
@@ -53,10 +53,10 @@ namespace COMP003B.FinalProject.Controllers
         public IActionResult Create()
         {
             ViewData["ExerciseId"] = new SelectList(_context.Exercises, "ExerciseId", "ExerciseId");
-            ViewData["FitnessGoalId"] = new SelectList(_context.FitnessGoal, "FitnessGoalId", "FitnessGoalId");
-            ViewData["LocationId"] = new SelectList(_context.Location, "LocationId", "LocationId");
-            ViewData["SessionId"] = new SelectList(_context.Session, "SessionId", "SessionId");
-            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserName");
+            ViewData["FitnessGoalId"] = new SelectList(_context.FitnessGoals, "FitnessGoalId", "FitnessGoalId");
+            ViewData["LocationId"] = new SelectList(_context.Locations, "LocationId", "LocationId");
+            ViewData["SessionId"] = new SelectList(_context.Sessions, "SessionId", "SessionId");
+            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserId");
             return View();
         }
 
@@ -73,11 +73,11 @@ namespace COMP003B.FinalProject.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ExerciseId"] = new SelectList(_context.Exercises, "ExerciseId", "ExerciseId", @record.ExerciseId);
-            ViewData["FitnessGoalId"] = new SelectList(_context.FitnessGoal, "FitnessGoalId", "FitnessGoalId", @record.FitnessGoalId);
-            ViewData["LocationId"] = new SelectList(_context.Location, "LocationId", "LocationId", @record.LocationId);
-            ViewData["SessionId"] = new SelectList(_context.Session, "SessionId", "SessionId", @record.SessionId);
-            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserName", @record.UserId);
+            ViewData["ExerciseId"] = new SelectList(_context.Exercises, "ExerciseId", "ExerciseId", record.ExerciseId);
+            ViewData["FitnessGoalId"] = new SelectList(_context.FitnessGoals, "FitnessGoalId", "FitnessGoalId", record.FitnessGoalId);
+            ViewData["LocationId"] = new SelectList(_context.Locations, "LocationId", "LocationId", record.LocationId);
+            ViewData["SessionId"] = new SelectList(_context.Sessions, "SessionId", "SessionId", record.SessionId);
+            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserId", record.UserId);
             return View(@record);
         }
 
@@ -89,16 +89,16 @@ namespace COMP003B.FinalProject.Controllers
                 return NotFound();
             }
 
-            var @record = await _context.Record.FindAsync(id);
+            var @record = await _context.Records.FindAsync(id);
             if (@record == null)
             {
                 return NotFound();
             }
             ViewData["ExerciseId"] = new SelectList(_context.Exercises, "ExerciseId", "ExerciseId", @record.ExerciseId);
-            ViewData["FitnessGoalId"] = new SelectList(_context.FitnessGoal, "FitnessGoalId", "FitnessGoalId", @record.FitnessGoalId);
-            ViewData["LocationId"] = new SelectList(_context.Location, "LocationId", "LocationId", @record.LocationId);
-            ViewData["SessionId"] = new SelectList(_context.Session, "SessionId", "SessionId", @record.SessionId);
-            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserName", @record.UserId);
+            ViewData["FitnessGoalId"] = new SelectList(_context.FitnessGoals, "FitnessGoalId", "FitnessGoalId", @record.FitnessGoalId);
+            ViewData["LocationId"] = new SelectList(_context.Locations, "LocationId", "LocationId", @record.LocationId);
+            ViewData["SessionId"] = new SelectList(_context.Sessions, "SessionId", "SessionId", @record.SessionId);
+            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserId", @record.UserId);
             return View(@record);
         }
 
@@ -135,10 +135,10 @@ namespace COMP003B.FinalProject.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ExerciseId"] = new SelectList(_context.Exercises, "ExerciseId", "ExerciseId", @record.ExerciseId);
-            ViewData["FitnessGoalId"] = new SelectList(_context.FitnessGoal, "FitnessGoalId", "FitnessGoalId", @record.FitnessGoalId);
-            ViewData["LocationId"] = new SelectList(_context.Location, "LocationId", "LocationId", @record.LocationId);
-            ViewData["SessionId"] = new SelectList(_context.Session, "SessionId", "SessionId", @record.SessionId);
-            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserName", @record.UserId);
+            ViewData["FitnessGoalId"] = new SelectList(_context.FitnessGoals, "FitnessGoalId", "FitnessGoalId", @record.FitnessGoalId);
+            ViewData["LocationId"] = new SelectList(_context.Locations, "LocationId", "LocationId", @record.LocationId);
+            ViewData["SessionId"] = new SelectList(_context.Sessions, "SessionId", "SessionId", @record.SessionId);
+            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserId", @record.UserId);
             return View(@record);
         }
 
@@ -150,12 +150,12 @@ namespace COMP003B.FinalProject.Controllers
                 return NotFound();
             }
 
-            var @record = await _context.Record
-                .Include(@ => @.Exercise)
-                .Include(@ => @.FitnessGoal)
-                .Include(@ => @.Location)
-                .Include(@ => @.Session)
-                .Include(@ => @.Users)
+            var @record = await _context.Records
+                .Include(r => r.Exercise)
+                .Include(r => r.FitnessGoal)
+                .Include(r => r.Location)
+                .Include(r => r.Session)
+                .Include(r => r.User)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (@record == null)
             {
@@ -170,10 +170,10 @@ namespace COMP003B.FinalProject.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var @record = await _context.Record.FindAsync(id);
+            var @record = await _context.Records.FindAsync(id);
             if (@record != null)
             {
-                _context.Record.Remove(@record);
+                _context.Records.Remove(@record);
             }
 
             await _context.SaveChangesAsync();
@@ -182,7 +182,7 @@ namespace COMP003B.FinalProject.Controllers
 
         private bool RecordExists(int id)
         {
-            return _context.Record.Any(e => e.Id == id);
+            return _context.Records.Any(e => e.Id == id);
         }
     }
 }

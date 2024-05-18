@@ -17,7 +17,7 @@
         public int LocationId { get; set; }
 
         // Nullable navigation proeperties
-        public virtual User? Users { get; set; }
+        public virtual User? User { get; set; }
 
         public virtual Session? Session { get; set; }
 

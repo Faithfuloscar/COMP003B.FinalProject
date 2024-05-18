@@ -4,10 +4,12 @@ namespace COMP003B.FinalProject.Models
 {
     public class Exercise
     {
+        
         public int ExerciseId { get; set; }
 
         public int SessionId { get; set; }
 
+        [Required]
         public string Name { get; set; }
 
         public int Sets { get; set; }

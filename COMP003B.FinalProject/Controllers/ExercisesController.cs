@@ -39,6 +39,11 @@ namespace COMP003B.FinalProject.Controllers
             {
                 return NotFound();
             }
+            ViewBag.Exercises = from u in _context.Users
+                                join r in _context.Records on u.UserId equals r.UserId
+                                join e in _context.Exercises on r.ExerciseId equals e.ExerciseId
+                                where u.UserId == id
+                                select e;
 
             return View(exercise);
         }

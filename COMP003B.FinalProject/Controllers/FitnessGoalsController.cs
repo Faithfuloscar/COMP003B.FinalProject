@@ -22,7 +22,7 @@ namespace COMP003B.FinalProject.Controllers
         // GET: FitnessGoals
         public async Task<IActionResult> Index()
         {
-            return View(await _context.FitnessGoal.ToListAsync());
+            return View(await _context.FitnessGoals.ToListAsync());
         }
 
         // GET: FitnessGoals/Details/5
@@ -33,12 +33,17 @@ namespace COMP003B.FinalProject.Controllers
                 return NotFound();
             }
 
-            var fitnessGoal = await _context.FitnessGoal
+            var fitnessGoal = await _context.FitnessGoals
                 .FirstOrDefaultAsync(m => m.FitnessGoalId == id);
             if (fitnessGoal == null)
             {
                 return NotFound();
             }
+            ViewBag.FitnessGoals = from u in _context.Users
+                                   join r in _context.Records on u.UserId equals r.UserId
+                                   join fg in _context.FitnessGoals on r.FitnessGoalId equals fg.FitnessGoalId
+                                   where u.UserId == id
+                                   select fg;
 
             return View(fitnessGoal);
         }
@@ -73,7 +78,7 @@ namespace COMP003B.FinalProject.Controllers
                 return NotFound();
             }
 
-            var fitnessGoal = await _context.FitnessGoal.FindAsync(id);
+            var fitnessGoal = await _context.FitnessGoals.FindAsync(id);
             if (fitnessGoal == null)
             {
                 return NotFound();
@@ -124,7 +129,7 @@ namespace COMP003B.FinalProject.Controllers
                 return NotFound();
             }
 
-            var fitnessGoal = await _context.FitnessGoal
+            var fitnessGoal = await _context.FitnessGoals
                 .FirstOrDefaultAsync(m => m.FitnessGoalId == id);
             if (fitnessGoal == null)
             {
@@ -139,10 +144,10 @@ namespace COMP003B.FinalProject.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var fitnessGoal = await _context.FitnessGoal.FindAsync(id);
+            var fitnessGoal = await _context.FitnessGoals.FindAsync(id);
             if (fitnessGoal != null)
             {
-                _context.FitnessGoal.Remove(fitnessGoal);
+                _context.FitnessGoals.Remove(fitnessGoal);
             }
 
             await _context.SaveChangesAsync();
@@ -151,7 +156,7 @@ namespace COMP003B.FinalProject.Controllers
 
         private bool FitnessGoalExists(int id)
         {
-            return _context.FitnessGoal.Any(e => e.FitnessGoalId == id);
+            return _context.FitnessGoals.Any(e => e.FitnessGoalId == id);
         }
     }
 }

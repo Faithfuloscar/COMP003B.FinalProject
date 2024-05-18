@@ -3,7 +3,8 @@
 namespace COMP003B.FinalProject.Models
 {
     public class User
-    {  
+    {
+        
         public int UserId { get; set; }
 
         [Required]
@@ -17,5 +18,7 @@ namespace COMP003B.FinalProject.Models
 
         // Collection navigation property
         public virtual ICollection<Record> Records { get; set;}
+
+        public int Age { get; set; }
     }
 }
