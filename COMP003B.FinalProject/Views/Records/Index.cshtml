@@ -40,19 +40,19 @@
                 @Html.DisplayFor(modelItem => item.TypeId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.User.UserId)
+                @Html.DisplayFor(modelItem => item.User.UserName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Session.SessionId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Location.LocationId)
+                @Html.DisplayFor(modelItem => item.Location.LocationName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FitnessGoal.FitnessGoalId)
+                @Html.DisplayFor(modelItem => item.FitnessGoal.GoalType)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Exercise.ExerciseId)
+                @Html.DisplayFor(modelItem => item.Exercise.Name)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

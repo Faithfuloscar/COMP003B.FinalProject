@@ -52,11 +52,11 @@ namespace COMP003B.FinalProject.Controllers
         // GET: Records/Create
         public IActionResult Create()
         {
-            ViewData["ExerciseId"] = new SelectList(_context.Exercises, "ExerciseId", "ExerciseId");
-            ViewData["FitnessGoalId"] = new SelectList(_context.FitnessGoals, "FitnessGoalId", "FitnessGoalId");
-            ViewData["LocationId"] = new SelectList(_context.Locations, "LocationId", "LocationId");
+            ViewData["ExerciseId"] = new SelectList(_context.Exercises, "ExerciseId", "Name");
+            ViewData["FitnessGoalId"] = new SelectList(_context.FitnessGoals, "FitnessGoalId", "GoalType");
+            ViewData["LocationId"] = new SelectList(_context.Locations, "LocationId", "Name");
             ViewData["SessionId"] = new SelectList(_context.Sessions, "SessionId", "SessionId");
-            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserId");
+            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserName");
             return View();
         }
 
@@ -73,11 +73,11 @@ namespace COMP003B.FinalProject.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ExerciseId"] = new SelectList(_context.Exercises, "ExerciseId", "ExerciseId", record.ExerciseId);
-            ViewData["FitnessGoalId"] = new SelectList(_context.FitnessGoals, "FitnessGoalId", "FitnessGoalId", record.FitnessGoalId);
-            ViewData["LocationId"] = new SelectList(_context.Locations, "LocationId", "LocationId", record.LocationId);
-            ViewData["SessionId"] = new SelectList(_context.Sessions, "SessionId", "SessionId", record.SessionId);
-            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserId", record.UserId);
+            ViewData["ExerciseId"] = new SelectList(_context.Exercises, "ExerciseId", "Name", @record.ExerciseId);
+            ViewData["FitnessGoalId"] = new SelectList(_context.FitnessGoals, "FitnessGoalId", "GoalType", @record.FitnessGoalId);
+            ViewData["LocationId"] = new SelectList(_context.Locations, "LocationId", "Name", @record.LocationId);
+            ViewData["SessionId"] = new SelectList(_context.Sessions, "SessionId", "SessionId", @record.SessionId);
+            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserName", @record.UserId);
             return View(@record);
         }
 
@@ -94,11 +94,11 @@ namespace COMP003B.FinalProject.Controllers
             {
                 return NotFound();
             }
-            ViewData["ExerciseId"] = new SelectList(_context.Exercises, "ExerciseId", "ExerciseId", @record.ExerciseId);
-            ViewData["FitnessGoalId"] = new SelectList(_context.FitnessGoals, "FitnessGoalId", "FitnessGoalId", @record.FitnessGoalId);
-            ViewData["LocationId"] = new SelectList(_context.Locations, "LocationId", "LocationId", @record.LocationId);
+            ViewData["ExerciseId"] = new SelectList(_context.Exercises, "ExerciseId", "Name", @record.ExerciseId);
+            ViewData["FitnessGoalId"] = new SelectList(_context.FitnessGoals, "FitnessGoalId", "GoalType", @record.FitnessGoalId);
+            ViewData["LocationId"] = new SelectList(_context.Locations, "LocationId", "Name", @record.LocationId);
             ViewData["SessionId"] = new SelectList(_context.Sessions, "SessionId", "SessionId", @record.SessionId);
-            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserId", @record.UserId);
+            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserName", @record.UserId);
             return View(@record);
         }
 
@@ -134,11 +134,11 @@ namespace COMP003B.FinalProject.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ExerciseId"] = new SelectList(_context.Exercises, "ExerciseId", "ExerciseId", @record.ExerciseId);
-            ViewData["FitnessGoalId"] = new SelectList(_context.FitnessGoals, "FitnessGoalId", "FitnessGoalId", @record.FitnessGoalId);
-            ViewData["LocationId"] = new SelectList(_context.Locations, "LocationId", "LocationId", @record.LocationId);
+            ViewData["ExerciseId"] = new SelectList(_context.Exercises, "ExerciseId", "Name", @record.ExerciseId);
+            ViewData["FitnessGoalId"] = new SelectList(_context.FitnessGoals, "FitnessGoalId", "GoalType", @record.FitnessGoalId);
+            ViewData["LocationId"] = new SelectList(_context.Locations, "LocationId", "Name", @record.LocationId);
             ViewData["SessionId"] = new SelectList(_context.Sessions, "SessionId", "SessionId", @record.SessionId);
-            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserId", @record.UserId);
+            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserName", @record.UserId);
             return View(@record);
         }
 

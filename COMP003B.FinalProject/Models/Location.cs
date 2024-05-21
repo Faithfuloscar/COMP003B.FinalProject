@@ -10,7 +10,7 @@ namespace COMP003B.FinalProject.Models
         public int SessionId { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public string LocationName { get; set; }
 
         public string Address { get; set; }
 
