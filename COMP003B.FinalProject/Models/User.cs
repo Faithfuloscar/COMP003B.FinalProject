@@ -7,18 +7,19 @@ namespace COMP003B.FinalProject.Models
         
         public int UserId { get; set; }
 
+
         [Required]
         public string UserName { get; set; }
 
-        public string Password { get; set; }
 
+        [Required]
+        [EmailAddress]
         public string Email { get; set; }
 
-        public int RegistrationDate { get; set; }
 
         // Collection navigation property
-        public virtual ICollection<Record> Records { get; set;}
+        public virtual ICollection<FitnessGoal>? FitnessGoals { get; set; }
 
-        public int Age { get; set; }
+        public virtual ICollection<Session>? Sessions { get; set; }
     }
 }

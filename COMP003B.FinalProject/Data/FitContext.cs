@@ -15,7 +15,5 @@ namespace COMP003B.FinalProject.Data
         public DbSet<Location> Locations { get; set; }
         public DbSet<Session> Sessions { get; set; }
         public DbSet<User> Users { get; set; }
-
-        public DbSet<Record> Records { get; set; }
     }
 }

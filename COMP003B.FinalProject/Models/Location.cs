@@ -12,14 +12,7 @@ namespace COMP003B.FinalProject.Models
         [Required]
         public string LocationName { get; set; }
 
-        public string Address { get; set; }
+        public virtual Session? Session { get; set; }
 
-        public string City { get; set; }
-
-        public string State { get; set; }
-
-        public virtual ICollection<Record> Records { get; set; }
-
-        public virtual ICollection<Session> Sessions { get; set; }
     }
 }

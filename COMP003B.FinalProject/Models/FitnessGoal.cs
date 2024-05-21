@@ -7,12 +7,9 @@ namespace COMP003B.FinalProject.Models
         public int FitnessGoalId { get; set; }
 
         public int UserId { get; set; }
-
         [Required]
         public string GoalType { get; set; }
 
-        public int TargetDate { get; set; }
-
-        public virtual ICollection<Record> Records { get; set; }
+        public virtual User? User { get; set; }
     }
 }

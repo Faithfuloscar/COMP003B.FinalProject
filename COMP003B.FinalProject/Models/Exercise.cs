@@ -12,13 +12,7 @@ namespace COMP003B.FinalProject.Models
         [Required]
         public string Name { get; set; }
 
-        public int Sets { get; set; }
-
-        public int Reps { get; set; }
-
-        public int Weight { get; set; }
-
-        public virtual ICollection<Record> Records { get; set; }
+        public virtual Session? Session { get; set; }
 
     }
 }

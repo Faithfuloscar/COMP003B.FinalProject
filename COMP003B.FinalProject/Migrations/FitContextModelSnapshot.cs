@@ -47,7 +47,7 @@ namespace COMP003B.FinalProject.Migrations
 
                     b.HasKey("ExerciseId");
 
-                    b.ToTable("Exercises");
+                    b.ToTable("Exercises", (string)null);
                 });
 
             modelBuilder.Entity("COMP003B.FinalProject.Models.FitnessGoal", b =>
@@ -70,7 +70,7 @@ namespace COMP003B.FinalProject.Migrations
 
                     b.HasKey("FitnessGoalId");
 
-                    b.ToTable("FitnessGoals");
+                    b.ToTable("FitnessGoal", (string)null);
                 });
 
             modelBuilder.Entity("COMP003B.FinalProject.Models.Location", b =>
@@ -89,7 +89,7 @@ namespace COMP003B.FinalProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("LocationName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -102,7 +102,7 @@ namespace COMP003B.FinalProject.Migrations
 
                     b.HasKey("LocationId");
 
-                    b.ToTable("Locations");
+                    b.ToTable("Location", (string)null);
                 });
 
             modelBuilder.Entity("COMP003B.FinalProject.Models.Record", b =>
@@ -143,7 +143,7 @@ namespace COMP003B.FinalProject.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Records");
+                    b.ToTable("Record", (string)null);
                 });
 
             modelBuilder.Entity("COMP003B.FinalProject.Models.Session", b =>
@@ -160,17 +160,12 @@ namespace COMP003B.FinalProject.Migrations
                     b.Property<int>("Duration")
                         .HasColumnType("int");
 
-                    b.Property<int>("LocationId")
-                        .HasColumnType("int");
-
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("SessionId");
 
-                    b.HasIndex("LocationId");
-
-                    b.ToTable("Sessions");
+                    b.ToTable("Session", (string)null);
                 });
 
             modelBuilder.Entity("COMP003B.FinalProject.Models.User", b =>
@@ -180,9 +175,6 @@ namespace COMP003B.FinalProject.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
-
-                    b.Property<int>("Age")
-                        .HasColumnType("int");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -201,7 +193,7 @@ namespace COMP003B.FinalProject.Migrations
 
                     b.HasKey("UserId");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("COMP003B.FinalProject.Models.Record", b =>
@@ -247,15 +239,6 @@ namespace COMP003B.FinalProject.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("COMP003B.FinalProject.Models.Session", b =>
-                {
-                    b.HasOne("COMP003B.FinalProject.Models.Location", null)
-                        .WithMany("Sessions")
-                        .HasForeignKey("LocationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("COMP003B.FinalProject.Models.Exercise", b =>
                 {
                     b.Navigation("Records");
@@ -269,8 +252,6 @@ namespace COMP003B.FinalProject.Migrations
             modelBuilder.Entity("COMP003B.FinalProject.Models.Location", b =>
                 {
                     b.Navigation("Records");
-
-                    b.Navigation("Sessions");
                 });
 
             modelBuilder.Entity("COMP003B.FinalProject.Models.Session", b =>
